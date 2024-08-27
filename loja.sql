@@ -243,3 +243,89 @@ SET serveroutput ON
 BEGIN
   get_cliente(99);
 END;
+
+-- 27/08
+ 
+SELECT *
+FROM tb_clientes
+WHERE nome LIKE '_o%';
+
+SELECT *
+FROM tb_clientes
+WHERE nome LIKE '%a';
+
+SELECT *
+FROM tb_clientes
+WHERE nome LIKE 'J%';
+
+SELECT *
+FROM tb_clientes
+WHERE nome LIKE '____';
+
+
+SELECT *
+FROM tb_promocao
+WHERE nome LIKE '%*%%' ESCAPE '*';
+
+SELECT *
+FROM tb_clientes
+WHERE id_cliente NOT IN (2, 3, 5);
+
+SELECT *
+FROM tb_clientes
+WHERE id_cliente NOT IN (2, 3, 5, NULL);
+
+SELECT *
+FROM tb_clientes
+WHERE id_cliente NOT IN (2, 3, 5, NVL(NULL, 0));
+
+SELECT *
+FROM tb_clientes
+WHERE id_cliente BETWEEN 1 AND 3;
+
+SELECT *
+FROM tb_clientes
+WHERE id_cliente NOT BETWEEN 1 AND 3;
+
+
+SELECT *
+FROM tb_clientes
+WHERE dt_nascimento > '01/JAN/1970' AND
+      id_cliente > 3;
+
+SELECT *
+FROM tb_clientes
+WHERE dt_nascimento > '01/JAN/1970' OR
+      id_cliente > 3;
+
+
+SELECT *
+FROM tb_clientes
+WHERE dt_nascimento > '01/JAN/1970' OR
+      id_cliente < 2 AND
+      telefone LIKE '%1211';
+
+
+
+SELECT *
+FROM tb_clientes
+ORDER BY sobrenome;
+
+
+SELECT *
+FROM tb_clientes
+ORDER BY nome ASC, sobrenome DESC;
+
+
+SELECT id_cliente, nome, sobrenome
+FROM tb_clientes
+ORDER BY 1;
+
+SELECT tb_produtos.nm_produto, tb_tipos_produtos.nm_tipo_produto
+FROM tb_produtos, tb_tipos_produtos
+WHERE tb_produtos.id_tipo_produto = tb_tipos_produtos.id_tipo_produto
+AND tb_produtos.id_produto = 3;
+
+SELECT p.id_produto, p.nm_produto, tp.nm_tipo_produto
+FROM tb_produtos p, tb_tipos_produtos tp
+WHERE p.id_tipo_produto = tp.id_tipo_produto ORDER BY p.nm_produto;
