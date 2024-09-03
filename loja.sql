@@ -329,3 +329,34 @@ AND tb_produtos.id_produto = 3;
 SELECT p.id_produto, p.nm_produto, tp.nm_tipo_produto
 FROM tb_produtos p, tb_tipos_produtos tp
 WHERE p.id_tipo_produto = tp.id_tipo_produto ORDER BY p.nm_produto;
+
+-- 03/09
+
+-- & cria uma variável
+SELECT id_produto, nm_produto, preco
+FROM tb_produtos
+WHERE id_produto = &v_id_produto;
+
+SELECT nm_produto, &v_coluna
+FROM &v_tabela
+WHERE &v_coluna = &v_id_produto;
+
+-- para n perguntar o mesmo duas vezes &&
+SELECT nm_produto, &&v_coluna
+FROM v_tabela
+WHERE &&v_coluna = &v_id_produto;
+
+ACCEPT v_id NUMBER FORMAT 99 PROMPT 'Entre com ID: ';
+
+SELECT id_produto, nm_produto, preco
+FROM tb_produtos
+WHERE id_produto = &v_id;
+
+-- predefine um valor para a variável
+DEFINE v_id_produto = 3;
+
+SELECT nm_produto, id_produto
+FROM tb_produtos
+WHERE id_produto = &v_id_produto;
+
+UNDEFINE v_id_produto;
